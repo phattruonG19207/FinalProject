@@ -1877,7 +1877,7 @@ html.menu-opened body {
 }
 .page-wrapper {
   margin-left: 240px;
-  padding-top: 10px;
+  padding-top: 40px;
   position: relative;
   transition: all 0.4s ease;
 }
