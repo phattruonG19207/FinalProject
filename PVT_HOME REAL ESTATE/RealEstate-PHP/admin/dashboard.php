@@ -347,7 +347,7 @@ if(!isset($_SESSION['auser']))
                                             <tbody>
 												<?php
 													
-													$connect = mysqli_connect("localhost", "root", "", "realestatephp");
+													$connect = mysqli_connect("us-cdbr-east-06.cleardb.net","b61fb782a18161","f0793db9","heroku_a69fea095885345");
 
                                           // Function to get revenue statistics by date
                                             global $connect;
@@ -362,7 +362,7 @@ if(!isset($_SESSION['auser']))
 												?>
 												<?php
 													
-													$connect = mysqli_connect("localhost", "root", "", "realestatephp");
+													$connect = mysqli_connect("us-cdbr-east-06.cleardb.net","b61fb782a18161","f0793db9","heroku_a69fea095885345");
 
                                           // Function to get revenue statistics by date
                                             global $connect;
@@ -377,7 +377,7 @@ if(!isset($_SESSION['auser']))
 												?>
 												<?php
 													
-													$connect = mysqli_connect("localhost", "root", "", "realestatephp");
+													$connect = mysqli_connect("us-cdbr-east-06.cleardb.net","b61fb782a18161","f0793db9","heroku_a69fea095885345");
 
                                           // Function to get revenue statistics by date
                                             global $connect;
@@ -447,7 +447,7 @@ if(!isset($_SESSION['auser']))
 		<script  src="assets/js/script.js"></script>
 		<?php
 // Connect to database
-$connect = mysqli_connect("localhost", "root", "", "realestatephp");
+$connect = mysqli_connect("us-cdbr-east-06.cleardb.net","b61fb782a18161","f0793db9","heroku_a69fea095885345");
 
 // Function to get revenue statistics by date
     global $connect;
