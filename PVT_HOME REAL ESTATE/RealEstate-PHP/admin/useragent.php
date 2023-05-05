@@ -1,30 +1,11 @@
 <?php
 session_start();
-require("config.php"); 
+require("config.php");
+////code
+ 
 if(!isset($_SESSION['auser']))
 {
 	header("location:index.php");
-}
-///code
-$error="";
-$msg="";
-if(isset($_POST['insert']))
-{
-	$sid = $_GET['id'];
-	$ustate=$_POST['ustate'];
-
-	$sql="UPDATE state SET sname = '{$ustate}'  WHERE sid = {$sid}";
-	$result=mysqli_query($con,$sql);
-	if($result)
-		{
-			$msg="<p class='alert alert-success'>State Updated</p>";
-			header("Location:stateadd.php?msg=$msg");
-		}
-		else
-		{
-			$msg="<p class='alert alert-warning'>State Not Updated</p>";
-			header("Location:stateadd.php?msg=$msg");
-		}	
 }
 ?>
 <!DOCTYPE html>
@@ -33,7 +14,7 @@ if(isset($_POST['insert']))
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Ventura - Data Tables</title>
+        <title>LM Homes | Admin</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
@@ -64,10 +45,10 @@ if(isset($_POST['insert']))
     <body>
 	
 		<!-- Main Wrapper -->
-
+		
 		
 			<!-- Header -->
-			<?php include("header.php");?>	
+				<?php include("header.php"); ?>
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->
@@ -78,58 +59,71 @@ if(isset($_POST['insert']))
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">State</h3>
+								<h3 class="page-title">Agent</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">State</li>
+									<li class="breadcrumb-item active">Agent</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
-				<!-- state add section --> 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<h1 class="card-title">Add State</h1>
-									
+									<h4 class="card-title">Agent List</h4>
+									<?php 
+										if(isset($_GET['msg']))	
+										echo $_GET['msg'];	
+									?>
 								</div>
-								<?php 
-								$sid = $_GET['id'];
-								$sql = "SELECT * FROM state where sid = {$sid}";
-								$result = mysqli_query($con, $sql);
-								while($row = mysqli_fetch_row($result))
-								{
-								?>
-								<form method="post">
-									<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
-													<h5 class="card-title">State Details</h5>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">State Name</label>
-														<div class="col-lg-9">
-															<input type="text" class="form-control" name="ustate" value="<?php echo $row['1']; ?>">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="text-left">
-												<input type="submit" class="btn btn-primary"  value="Submit" name="insert" style="margin-left:200px;">
-											</div>
-									</div>
-								</form>
-								<?php } ?>
+								<div class="card-body">
+									<table id="basic-datatable" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Contact</th>
+                                                    <th>Utype</th>
+													<th>Image</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+											<?php	
+												$query=mysqli_query($con,"select * from user where utype='agent'");
+												$cnt=1;
+												while($row=mysqli_fetch_row($query))
+													{
+											?>
+                                                <tr>
+                                                    <td><?php echo $cnt; ?></td>
+                                                    <td><?php echo $row['1']; ?></td>
+                                                    <td><?php echo $row['2']; ?></td>
+                                                    <td><?php echo $row['3']; ?></td>
+                                                    <td><?php echo $row['5']; ?></td>
+													<td><img src="user/<?php echo $row['6']; ?>" height="50px" width="50px"></td>
+                                                    <td><a href="useragentdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+                                                </tr>
+                                                <?php
+												$cnt=$cnt+1;
+												} 
+												?>
+                                            </tbody>
+                                        </table>
+								</div>
 							</div>
 						</div>
 					</div>
-				<!----End state add section  --->
+				
 				</div>			
 			</div>
 			<!-- /Main Wrapper -->
 
+		
 		<!-- jQuery -->
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 		
@@ -140,7 +134,6 @@ if(isset($_POST['insert']))
 		<!-- Slimscroll JS -->
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 		
-		<!-- Datatables JS -->
 		<!-- Datatables JS -->
 		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script src="assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>

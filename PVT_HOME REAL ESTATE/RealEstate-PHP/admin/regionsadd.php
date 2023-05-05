@@ -10,19 +10,19 @@ $error="";
 $msg="";
 if(isset($_POST['insert']))
 {
-	$state=$_POST['state'];
+	$regions=$_POST['regions'];
 	
-	if(!empty($state)){
-		$sql="insert into state (sname) values('$state')";
+	if(!empty($regions)){
+		$sql="insert into regions (sname) values('$regions')";
 		$result=mysqli_query($con,$sql);
 		if($result)
 			{
-				$msg="<p class='alert alert-success'>State Inserted Successfully</p>";
+				$msg="<p class='alert alert-success'>regions Inserted Successfully</p>";
 						
 			}
 			else
 			{
-				$error="<p class='alert alert-warning'>* State Not Inserted</p>";
+				$error="<p class='alert alert-warning'>* regions Not Inserted</p>";
 			}
 	}
 	else{
@@ -82,22 +82,22 @@ if(isset($_POST['insert']))
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">State</h3>
+								<h3 class="page-title">Regions</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">State</li>
+									<li class="breadcrumb-item active">regions</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
-				<!-- state add section --> 
+				<!-- regions add section --> 
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h1 class="card-title">Add State</h1>
+									<h1 class="card-title">Add regions</h1>
 									<?php echo $error;?>
 									<?php echo $msg;?>
 									<?php 
@@ -109,11 +109,11 @@ if(isset($_POST['insert']))
 									<div class="card-body">
 											<div class="row">
 												<div class="col-xl-6">
-													<h5 class="card-title">State Details</h5>
+													<h5 class="card-title">Regions Details</h5>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">State Name</label>
+														<label class="col-lg-3 col-form-label">Regions Name</label>
 														<div class="col-lg-9">
-															<input type="text" class="form-control" name="state">
+															<input type="text" class="form-control" name="regions">
 														</div>
 													</div>
 												</div>
@@ -126,14 +126,14 @@ if(isset($_POST['insert']))
 							</div>
 						</div>
 					</div>
-				<!----End state add section  --->
+				<!----End regions add section  --->
 				
-				<!----view state  --->
+				<!----view regions  --->
 				<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">State List</h4>
+									<h4 class="card-title">Regions List</h4>
 									
 								</div>
 								<div class="card-body">
@@ -142,7 +142,7 @@ if(isset($_POST['insert']))
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>State</th>
+                                                    <th>Regions</th>
 													<th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -151,7 +151,7 @@ if(isset($_POST['insert']))
                                             <tbody>
 											<?php
 													
-												$query=mysqli_query($con,"select * from state");
+												$query=mysqli_query($con,"select * from regions");
 												$cnt=1;
 												while($row=mysqli_fetch_row($query))
 													{
@@ -160,8 +160,8 @@ if(isset($_POST['insert']))
                                                     
                                                     <td><?php echo $cnt; ?></td>
                                                     <td><?php echo $row['1']; ?></td>
-													<td><a href="stateedit.php?id=<?php echo $row['0']; ?>"><button class="btn btn-info">Edit</button></a>
-                                                    <a href="statedelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
+													<td><a href="regionsedit.php?id=<?php echo $row['0']; ?>"><button class="btn btn-info">Edit</button></a>
+                                                    <a href="regionsdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
                                                 </tr>
                                                 <?php $cnt=$cnt+1; } ?>
 
@@ -171,13 +171,13 @@ if(isset($_POST['insert']))
 							</div>
 						</div>
 					</div>
-				<!-- view state -->
+				<!-- view regions -->
 				</div>			
 			</div>
 			<!-- /Main Wrapper -->
 			<!---
 			
-			<label class="col-lg-3 col-form-label">State Name</label>
+			<label class="col-lg-3 col-form-label">regions Name</label>
 													<div class="col-lg-9">	
 														<select class="form-control">
 															<option>Select</option>

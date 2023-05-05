@@ -160,8 +160,8 @@ include("config.php");
                                         <tr>
                                             <td>City :</td>
                                             <td class="text-capitalize"><?php echo $row['15'];?></td>
-                                            <td>State :</td>
-                                            <td class="text-capitalize"><?php echo $row['16'];?></td>
+                                             <td>Regions :</td>
+                                            <td class="text-capitalize"><?php echo $row['16'];?></td> 
                                         </tr>
                                         
                                     </tbody>
@@ -172,7 +172,7 @@ include("config.php");
 								<?php echo $row['17'];?>
 								
                             </div>   
-                            <h5 class="mt-5 mb-4 text-secondary">Floor Plans</h5>
+                             <h5 class="mt-5 mb-4 text-secondary">Floor Plans</h5>
                             <div class="accordion" id="accordionExample">
                                 <button class="bg-gray hover-bg-success hover-text-white text-ordinary py-3 px-4 mb-1 w-100 text-left rounded position-relative" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Floor Plans </button>
                                 <div id="collapseOne" class="collapse show p-4" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -183,7 +183,7 @@ include("config.php");
                                 <button class="bg-gray hover-bg-success hover-text-white text-ordinary py-3 px-4 mb-1 w-100 text-left rounded position-relative collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Ground Floor</button>
                                 <div id="collapseThree" class="collapse p-4" aria-labelledby="headingThree" data-parent="#accordionExample">
                                     <img src="admin/property/<?php echo $row['27'];?>" alt="Not Available"> </div>
-                            </div>
+                            </div> 
 
                             <h5 class="mt-5 mb-4 text-secondary double-down-line-left position-relative">Contact Agent</h5>
                             <div class="agent-contact pt-60">

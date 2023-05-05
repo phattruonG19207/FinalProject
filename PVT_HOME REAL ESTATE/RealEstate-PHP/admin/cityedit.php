@@ -1,11 +1,39 @@
 <?php
 session_start();
-require("config.php");
-////code
- 
+include("config.php"); 
 if(!isset($_SESSION['auser']))
 {
 	header("location:index.php");
+}
+///code
+$error="";
+$msg="";
+if(isset($_POST['insert']))
+{
+	$cid = $_GET['id'];
+	
+	$uregions=$_POST['uregions'];
+	$ucity=$_POST['ucity'];
+	
+	if(!empty($uregions) && !empty($ucity))
+	{
+		$sql="UPDATE city SET cname = '{$ucity}' ,sid = '{$uregions}' WHERE cid = {$cid}";
+		$result=mysqli_query($con,$sql);
+		if($result)
+			{
+				$msg="<p class='alert alert-success'>City Updated</p>";
+				header("Location:cityadd.php?msg=$msg");
+			}
+			else
+			{
+				$msg="<p class='alert alert-warning'>City Not Updated</p>";
+				header("Location:cityadd.php?msg=$msg");
+			}
+	}
+	else{
+		$error = "<p class='alert alert-warning'>* Please Fill all the Fields</p>";
+	}
+	
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +42,7 @@ if(!isset($_SESSION['auser']))
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>LM Homes | Admin</title>
+        <title>Ventura - Data Tables</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
@@ -45,10 +73,10 @@ if(!isset($_SESSION['auser']))
     <body>
 	
 		<!-- Main Wrapper -->
-		
+
 		
 			<!-- Header -->
-				<?php include("header.php"); ?>
+			<?php include("header.php");?>	
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->
@@ -59,76 +87,85 @@ if(!isset($_SESSION['auser']))
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">Agent</h3>
+								<h3 class="page-title">Regions</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">Agent</li>
+									<li class="breadcrumb-item active">regions</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
+				<!-- city add section --> 
 					<div class="row">
-						<div class="col-sm-12">
+						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Agent List</h4>
+									<h1 class="card-title">Update City</h1>
+									<?php echo $error;?>
+									<?php echo $msg;?>
 									<?php 
 										if(isset($_GET['msg']))	
 										echo $_GET['msg'];	
 									?>
 								</div>
-								<div class="card-body">
-
-									<table id="basic-datatable" class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Contact</th>
-                                                    <th>Utype</th>
-													<th>Image</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                        
-                                        
-                                            <tbody>
-											<?php
-													
-												$query=mysqli_query($con,"select * from user where utype='agent'");
-												$cnt=1;
-												while($row=mysqli_fetch_row($query))
-													{
-											?>
-                                                <tr>
-                                                    <td><?php echo $cnt; ?></td>
-                                                    <td><?php echo $row['1']; ?></td>
-                                                    <td><?php echo $row['2']; ?></td>
-                                                    <td><?php echo $row['3']; ?></td>
-                                                    <td><?php echo $row['5']; ?></td>
-													<td><img src="user/<?php echo $row['6']; ?>" height="50px" width="50px"></td>
-                                                    <td><a href="useragentdelete.php?id=<?php echo $row['0']; ?>"><button class="btn btn-danger">Delete</button></a></td>
-                                                </tr>
-                                                <?php
-												$cnt=$cnt+1;
-												} 
-												?>
-                                               
-                                            </tbody>
-                                        </table>
-								</div>
+								<?php 
+								$cid = $_GET['id'];
+								$sql = "SELECT * FROM city where cid = {$cid}";
+								$result = mysqli_query($con, $sql);
+								while($row = mysqli_fetch_row($result))
+								{
+								?>
+								<form method="post">
+									<div class="card-body">
+											<div class="row">
+												<div class="col-xl-6">
+													<h5 class="card-title">City Details</h5>
+													<div class="form-group row">
+														<label class="col-lg-3 col-form-label">Regions Name</label>
+														<div class="col-lg-9" >	
+															<select class="form-control" name="uregions">
+																<option value="">Select</option>
+																<?php
+																		$query1=mysqli_query($con,"select * from regions");
+																		while($row1=mysqli_fetch_row($query1))
+																			{
+																	?>
+																<option value="<?php echo $row1['0']; ?>">
+																<?php echo $row1['1']; ?></option>
+																<?php } ?>
+															</select>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-3 col-form-label">City Name</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" name="ucity" value="<?php echo $row['1']; ?>">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="text-left">
+												<input type="submit" class="btn btn-primary"  value="Submit" name="insert" style="margin-left:200px;">
+											</div>
+									</div>
+								</form>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
-				
+				<!----End City add section  --->
+
 				</div>			
 			</div>
 			<!-- /Main Wrapper -->
+			<!---
+			
+			
+			
+			---->
 
-		
 		<!-- jQuery -->
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 		
@@ -139,6 +176,7 @@ if(!isset($_SESSION['auser']))
 		<!-- Slimscroll JS -->
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 		
+		<!-- Datatables JS -->
 		<!-- Datatables JS -->
 		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script src="assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>

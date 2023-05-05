@@ -113,9 +113,9 @@ if(!isset($_SESSION['auser']))
 							</li>
 						
 							<li class="submenu">
-								<a href="#"><i class="fe fe-location"></i> <span>State & City</span> <span class="menu-arrow"></span></a>
+								<a href="#"><i class="fe fe-location"></i> <span>Regions & City</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="stateadd.php"> State </a></li>
+									<li><a href="regionsadd.php"> Regions </a></li>
 									<li><a href="cityadd.php"> City </a></li>
 								</ul>
 							</li>

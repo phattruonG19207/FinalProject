@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php"); 
+require("config.php"); 
 if(!isset($_SESSION['auser']))
 {
 	header("location:index.php");
@@ -10,30 +10,21 @@ $error="";
 $msg="";
 if(isset($_POST['insert']))
 {
-	$cid = $_GET['id'];
-	
-	$ustate=$_POST['ustate'];
-	$ucity=$_POST['ucity'];
-	
-	if(!empty($ustate) && !empty($ucity))
-	{
-		$sql="UPDATE city SET cname = '{$ucity}' ,sid = '{$ustate}' WHERE cid = {$cid}";
-		$result=mysqli_query($con,$sql);
-		if($result)
-			{
-				$msg="<p class='alert alert-success'>City Updated</p>";
-				header("Location:cityadd.php?msg=$msg");
-			}
-			else
-			{
-				$msg="<p class='alert alert-warning'>City Not Updated</p>";
-				header("Location:cityadd.php?msg=$msg");
-			}
-	}
-	else{
-		$error = "<p class='alert alert-warning'>* Please Fill all the Fields</p>";
-	}
-	
+	$sid = $_GET['id'];
+	$uregions=$_POST['uregions'];
+
+	$sql="UPDATE regions SET sname = '{$uregions}'  WHERE sid = {$sid}";
+	$result=mysqli_query($con,$sql);
+	if($result)
+		{
+			$msg="<p class='alert alert-success'>regions Updated</p>";
+			header("Location:regionsadd.php?msg=$msg");
+		}
+		else
+		{
+			$msg="<p class='alert alert-warning'>Regions Not Updated</p>";
+			header("Location:regionsadd.php?msg=$msg");
+		}	
 }
 ?>
 <!DOCTYPE html>
@@ -87,32 +78,27 @@ if(isset($_POST['insert']))
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">State</h3>
+								<h3 class="page-title">Regions</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">State</li>
+									<li class="breadcrumb-item active">Regions</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
-				<!-- city add section --> 
+				<!-- regions add section --> 
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h1 class="card-title">Add City</h1>
-									<?php echo $error;?>
-									<?php echo $msg;?>
-									<?php 
-										if(isset($_GET['msg']))	
-										echo $_GET['msg'];	
-									?>
+									<h1 class="card-title">Update Regions</h1>
+									
 								</div>
 								<?php 
-								$cid = $_GET['id'];
-								$sql = "SELECT * FROM city where cid = {$cid}";
+								$sid = $_GET['id'];
+								$sql = "SELECT * FROM regions where sid = {$sid}";
 								$result = mysqli_query($con, $sql);
 								while($row = mysqli_fetch_row($result))
 								{
@@ -121,27 +107,11 @@ if(isset($_POST['insert']))
 									<div class="card-body">
 											<div class="row">
 												<div class="col-xl-6">
-													<h5 class="card-title">City Details</h5>
+													<h5 class="card-title">Regions Details</h5>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">State Name</label>
-														<div class="col-lg-9" >	
-															<select class="form-control" name="ustate">
-																<option value="">Select</option>
-																<?php
-																		$query1=mysqli_query($con,"select * from state");
-																		while($row1=mysqli_fetch_row($query1))
-																			{
-																	?>
-																<option value="<?php echo $row1['0']; ?>">
-																<?php echo $row1['1']; ?></option>
-																<?php } ?>
-															</select>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">City Name</label>
+														<label class="col-lg-3 col-form-label">Regions Name</label>
 														<div class="col-lg-9">
-															<input type="text" class="form-control" name="ucity" value="<?php echo $row['1']; ?>">
+															<input type="text" class="form-control" name="uregions" value="<?php echo $row['1']; ?>">
 														</div>
 													</div>
 												</div>
@@ -155,16 +125,10 @@ if(isset($_POST['insert']))
 							</div>
 						</div>
 					</div>
-				<!----End City add section  --->
-
+				<!----End regions add section  --->
 				</div>			
 			</div>
 			<!-- /Main Wrapper -->
-			<!---
-			
-			
-			
-			---->
 
 		<!-- jQuery -->
         <script src="assets/js/jquery-3.2.1.min.js"></script>

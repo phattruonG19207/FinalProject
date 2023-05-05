@@ -240,9 +240,6 @@ include("config.php");
 
                                 </div>
                             </div>
-                            
-                            
-                           
                         </div>
                     </div>
                 </div>
@@ -251,7 +248,7 @@ include("config.php");
 		<!--	Recent Properties  -->
         
         <!--	Why Choose Us -->
-        <div class="full-row living bg-one overlay-secondary-half" style="background-image: url('images/01.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div class="full-row living bg-one overlay-secondary-half" style="background-image: url('images/t1.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
@@ -350,7 +347,7 @@ include("config.php");
         
         <!--	Achievement
         ============================================================-->
-        <div class="full-row overlay-secondary" style="background-image: url('images/breadcromb.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <!-- <div class="full-row overlay-secondary" style="background-image: url('images/breadcromb.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
             <div class="container">
                 <div class="fact-counter">
                     <div class="row">
@@ -414,10 +411,10 @@ include("config.php");
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
    
         <!--	Popular Place -->
-        <div class="full-row bg-gray">
+        <!-- <div class="full-row bg-gray">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -488,7 +485,7 @@ include("config.php");
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--	Popular Places -->
 		
 		<!--	Testonomial -->
@@ -498,7 +495,7 @@ include("config.php");
 					<div class="col-lg-12">
 						<div class="content-sidebar p-4">
 							<div class="mb-3 col-lg-12">
-								<h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Testimonial</h4>
+								<h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Feedback</h4>
 									<div class="recent-review owl-carousel owl-dots-gray owl-dots-hover-success">
 									
 										<?php
