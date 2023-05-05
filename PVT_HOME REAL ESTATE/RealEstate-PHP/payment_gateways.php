@@ -14,7 +14,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $vnp_TmnCode = "TSZ11FMN"; //Mã định danh merchant kết nối (Terminal Id)
 $vnp_HashSecret = "KZCXZQGJCBJPHQOJIZHUBDJYGAWQNHNB"; //Secret key
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://localhost:8080/RealEstate-PHP/RealEstate-PHP/payment.php";
+$vnp_Returnurl = "https://pvt-home-real-estate.herokuapp.com/payment.php";
 $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
 $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 //Config input format
