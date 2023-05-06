@@ -92,8 +92,8 @@ include("config.php");
 						
 							<?php 
 							
-								$state=$_REQUEST['id'];
-								$query=mysqli_query($con,"SELECT property.*, user.uname,user.utype,user.uimage FROM `property`,`user` WHERE property.uid=user.uid and state='$state'");
+								$regions=$_REQUEST['id'];
+								$query=mysqli_query($con,"SELECT property.*, user.uname,user.utype,user.uimage FROM `property`,`user` WHERE property.uid=user.uid and regions='$regions'");
 								while($row=mysqli_fetch_array($query))
 								{
 							?>
