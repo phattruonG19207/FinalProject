@@ -30,7 +30,7 @@ if(isset($_POST['add']))
 	$city=$_POST['city'];
 	$asize=$_POST['asize'];
 	$loc=$_POST['loc'];
-	$state=$_POST['state'];
+	$regions=$_POST['regions'];
 	$status=$_POST['status'];
 	$uid=$_POST['uid'];
 	$feature=$_POST['feature'];
@@ -69,9 +69,9 @@ if(isset($_POST['add']))
 	move_uploaded_file($temp_name6,"property/$fimage1");
 	move_uploaded_file($temp_name7,"property/$fimage2");
 	
-	$sql="INSERT INTO property (title,pcontent,type,bhk,stype,bedroom,bathroom,balcony,kitchen,hall,floor,size,price,location,city,state,feature,pimage,pimage1,pimage2,pimage3,pimage4,uid,status,mapimage,topmapimage,groundmapimage,totalfloor,isFeatured)
+	$sql="INSERT INTO property (title,pcontent,type,bhk,stype,bedroom,bathroom,balcony,kitchen,hall,floor,size,price,location,city,regions,feature,pimage,pimage1,pimage2,pimage3,pimage4,uid,status,mapimage,topmapimage,groundmapimage,totalfloor,isFeatured)
 	VALUES('$title','$content','$ptype','$bhk','$stype','$bed','$bath','$balc','$kitc','$hall','$floor','$asize','$price',
-	'$loc','$city','$state','$feature','$aimage','$aimage1','$aimage2','$aimage3','$aimage4','$uid','$status','$fimage','$fimage1','$fimage2','$totalfloor','$isFeatured')";
+	'$loc','$city','$regions','$feature','$aimage','$aimage1','$aimage2','$aimage3','$aimage4','$uid','$status','$fimage','$fimage1','$fimage2','$totalfloor','$isFeatured')";
 	$result=mysqli_query($con,$sql);
 	if($result)
 		{
@@ -270,9 +270,9 @@ if(isset($_POST['add']))
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">State</label>
+													<label class="col-lg-3 col-form-label">Regions</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="state" required placeholder="Enter State">
+														<input type="text" class="form-control" name="regions" required placeholder="Enter Regions">
 													</div>
 												</div>
 											</div>
@@ -385,12 +385,12 @@ if(isset($_POST['add']))
 														</select>
 													</div>
 												</div>
-												<!-- <div class="form-group row">
+												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Basement Floor Plan Image</label>
 													<div class="col-lg-9">
 														<input class="form-control" name="fimage1" type="file">
 													</div>
-												</div> -->
+												</div>
 											</div>
 											<div class="col-xl-6">
 												
@@ -412,7 +412,7 @@ if(isset($_POST['add']))
 														<input type="text" class="form-control" name="uid" required placeholder="Enter User Id (only number)">
 													</div>
 												</div>
-												<!-- <div class="form-group row">
+												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Floor Plan Image</label>
 													<div class="col-lg-9">
 														<input class="form-control" name="fimage" type="file">
@@ -423,7 +423,7 @@ if(isset($_POST['add']))
 													<div class="col-lg-9">
 														<input class="form-control" name="fimage2" type="file">
 													</div>
-												</div> -->
+												</div>
 											</div>
 										</div>
 
